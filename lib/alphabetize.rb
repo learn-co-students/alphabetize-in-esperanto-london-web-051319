@@ -1,26 +1,8 @@
 require "pry"
 
 def alphabetize(arr)
-  alphabet = "abcĉdefgĝhĥijĵklmnoprsŝtuŭvz".split("")
-  # arr.join("").split("").compact.uniq!
-
-  # binding.pry
-
-  first_letter = arr.collect {|element| element[0]}
-  indexes = first_letter.collect {|letter| alphabet.index(letter)}
-  order_hash = {}
-  alphabetized_array= []
-  i = 0
-  until i == indexes.length
-    order_hash[arr[i]] = indexes[i]
-    i+=1
+  alphabet = "abcĉdefgĝhĥijĵklmnoprsŝtuŭvz".split("") #first we set up the alphabet array to compare against and get the index values from
+  arr.sort_by do |phrase| # iterate through the phrase array, sorting by phrase
+    phrase.split("").map {|letter| alphabet.index(letter)} # collect the individual letters of the words in the phrase in order and provide an index for the letter currently being used in the iteration relating to that letter's position in the alphabet. 
   end
-  indexes.sort.each do |num|
-    order_hash.each do |phrase, val|
-      if num == val
-        alphabetized_array << phrase
-      end
-    end
-  end
-  alphabetized_array
 end
